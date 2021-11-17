@@ -5,14 +5,6 @@ const menu = () => {
   const menuItem = document.querySelectorAll('.popup-menu-nav__item > a');
   const upBtn = document.querySelector('.button-footer>a');
 
-  const menuClosing = () => {
-    if(document.documentElement.offsetWidth <= 576){
-      popup.style.transform = 'translate3d(0,-100%, 0)';
-    }else {
-      popup.style.transform = 'translate3d(100%, 0, 0)'
-    }
-  }
-
   menuIcon.addEventListener('click', () => {
       popup.style.transform = 'translate3d(0, 0%, 0)';
   })
@@ -37,5 +29,13 @@ const menu = () => {
   })
 
 }
+const menuClosing = () => {
+  const popup = document.querySelector('.popup-dialog-menu')
+  if(document.documentElement.offsetWidth <= 576){
+    popup.style.transform = 'translate3d(0,-100%, 0)';
+  }else {
+    popup.style.transform = 'translate3d(100%, 0, 0)'
+  }
+}
 
-export default menu;
+export {menu, menuClosing};
