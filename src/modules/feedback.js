@@ -1,12 +1,24 @@
 const feedback = () => {
 
   const feedbackForm = document.querySelectorAll('.feedback');
+  const termsCloseBtn = document.querySelector('.popup-privacy>.close');
+  const terms = document.querySelector('.popup-privacy');
+
+  termsCloseBtn.addEventListener('click', () => {
+    terms.style.visibility  = 'hidden';
+  })
 
   feedbackForm.forEach(item => {
     const phoneInput = item.querySelector('.input.feedback__input-input');
     const feedbackBtn = item.querySelector('.button');
+    const privacyLink = item.querySelector('.link-privacy');
+
     let confCheckbox = item.querySelector('.checkbox__input');
-    console.dir(confCheckbox);
+
+    privacyLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      terms.style.visibility  = 'visible'
+    })
 
     phoneInput.addEventListener('input', (e) => {
       const pattern = /[^\d+\-\)\(]/gi
