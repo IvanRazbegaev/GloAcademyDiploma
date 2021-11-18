@@ -7,6 +7,10 @@ const feedback = () => {
     phoneInput.addEventListener('input', (e) => {
       const pattern = /[^\d+\-\)\(]/gi
       e.target.value = e.target.value.replace(pattern, '')
+      if (e.target.value.length < 11){
+        alert('Телефонный номер не может быть менее 11 символов');
+        return false;
+      }
     })
   })
 }
