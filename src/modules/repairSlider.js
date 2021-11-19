@@ -11,6 +11,7 @@ const repairSlider = () => {
 
   if(document.documentElement.offsetWidth <= mobVersionWidth){
     mobNavigationLeft.addEventListener('click', () => {
+
       console.log('Clicked Left!')
     });
     mobNavigationRight.addEventListener('click', () => {
