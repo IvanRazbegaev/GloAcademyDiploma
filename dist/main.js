@@ -16,7 +16,7 @@
   \******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_feedback__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/feedback */ \"./modules/feedback.js\");\n\n\n(0,_modules_feedback__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_feedback__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/feedback */ \"./modules/feedback.js\");\n\r\n\r\n(0,_modules_feedback__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst feedback = () => {\n\n  const feedbackForm = document.querySelectorAll('.feedback');\n\n  feedbackForm.forEach(item => {\n    const phoneInput = item.querySelector('.input.feedback__input-input');\n    phoneInput.addEventListener('input', (e) => {\n      const pattern = /[^\\d+\\-\\)\\(]/gi\n      e.target.value = e.target.value.replace(pattern, '')\n    })\n  })\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (feedback);\n\n\n//# sourceURL=webpack:///./modules/feedback.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst feedback = () => {\n\n  const feedbackForm = document.querySelectorAll('.feedback');\n\n  feedbackForm.forEach(item => {\n    const phoneInput = item.querySelector('.input.feedback__input-input');\n    phoneInput.addEventListener('input', (e) => {\n      e.target.value = phoneMask(e.target.value)\n    })\n  })\n  function phoneMask (phone) {\n    return phone.replace(/\\D/g, '')\n      .replace(/^(\\d{1,2})(\\d{3})(\\d{3})(\\d{2})(\\d{2})/, '+$1($2)$3-$4-$5')\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (feedback);\n\n\n//# sourceURL=webpack:///./modules/feedback.js?");
 
 /***/ })
 
