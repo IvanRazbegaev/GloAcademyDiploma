@@ -1,44 +1,55 @@
 const feedback = () => {
+  const phoneInput = document.querySelectorAll('[name=phone]');
+  // const feedbackBtn = item.querySelector('.button');
+  // let confCheckbox = item.querySelector('.checkbox__input');
 
-  const feedbackForm = document.querySelectorAll('.feedback');
+  for (let i = 1; i <= phoneInput.length; i++){
+    const feedbackForm = document.querySelector(`#feedback${i}`);
+    const phoneInput = feedbackForm.querySelector('[name=phone]');
+    const name = feedbackForm.querySelector('[type=text]');
+    const feedbackBtn = feedbackForm.querySelector('button');
 
-  feedbackForm.forEach(item => {
-    const phoneInput = item.querySelector('.input.feedback__input-input');
-    const feedbackBtn = item.querySelector('.button');
-    let confCheckbox = item.querySelector('.checkbox__input');
-    console.dir(confCheckbox);
+    let checkbox = feedbackForm.querySelector('[type=checkbox]');
+    let dataObj;
 
-    const feedbackForm = document.querySelectorAll('.feedback');
-
-    feedbackForm.forEach(item => {
-      const phoneInput = item.querySelector('.input.feedback__input-input');
-      phoneInput.addEventListener('input', (e) => {
+    phoneInput.addEventListener('input', (e) => {
         e.target.value = phoneMask(e.target.value);
       })
-    })
-
     feedbackBtn.addEventListener('click', async (e) => {
-      confCheckbox = item.querySelector('.checkbox__input');
-      e.preventDefault();
-      if (phoneInput.value.length < 11){
-        alert('Телефонный номер не может быть менее 11 символов!')
-        return false;
-      } else if (!confCheckbox.checked) {
-        alert('Примите политику безопасности!')
-        return false;
-      } else {
-        confCheckbox.checked = false;
-      }
-      const response = await sendFeedback(phoneInput.value);
-      phoneInput.value = '';
-      console.log(response);
+        checkbox = feedbackForm.querySelector('[type=checkbox]');
+        e.preventDefault();
+        if (phoneInput.value.length < 11){
+          alert('Телефонный номер не может быть менее 11 символов!')
+          return false;
+        } else if (!checkbox.checked) {
+          alert('Примите политику безопасности!')
+          return false;
+        }
+        if(name){
+          dataObj ={
+            name: name.value,
+            mail: phoneInput.value
+          }
+        } else {
+          dataObj ={
+            mail: phoneInput.value
+          }
+        }
+        const response = await sendFeedback(dataObj);
+        checkbox.checked = false;
+        phoneInput.value = '';
+        if(name) {
+          name.value = '';
+        }
+        console.log(response);
     })
-  })
+  }
 }
+
 
 function phoneMask (phone) {
   return phone.replace(/\D/g, '')
-    .replace(/^(\d{1,2})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1($2)$3-$4-$5')
+    .replace(/^(\d)(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1($2)$3-$4-$5')
 }
 
 const sendFeedback = async (data) => {
