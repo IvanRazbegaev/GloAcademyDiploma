@@ -16,7 +16,7 @@
   \******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_popupAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/popupAnnotation */ \"./modules/popupAnnotation.js\");\n\n\n(0,_modules_popupAnnotation__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_popupAnnotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/popupAnnotation */ \"./modules/popupAnnotation.js\");\n\r\n\r\n(0,_modules_popupAnnotation__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst popupAnnotation = () => {\n  const formulaForm = document.querySelector('.wrapper_small');\n  const formulaItemsPopup = formulaForm.querySelectorAll('.formula-item-popup');\n  const formulaItems = formulaForm.querySelectorAll('.formula-item');\n\n  formulaItems.forEach((item, index) => {\n    item.addEventListener('mouseover', (e) => {\n      if (!e.target.classList.contains(\"formula-item\")){\n        formulaItemsPopup[index].style.opacity = '1';\n        formulaItemsPopup[index].style.visibility = 'visible';\n      } else {\n        formulaItemsPopup[index].style.opacity = '0.2';\n        formulaItemsPopup[index].style.visibility = 'hidden';\n      }\n    })\n  })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (popupAnnotation);\n\n\n//# sourceURL=webpack:///./modules/popupAnnotation.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst popupAnnotation = () => {\n  const formulaForm = document.querySelector('.wrapper_small');\n  const formulaItemsPopup = formulaForm.querySelectorAll('.formula-item-popup');\n  const formulaItems = formulaForm.querySelectorAll('.formula-item');\n\n  formulaItems.forEach((item, index) => {\n    item.addEventListener('mouseover', (e) => {\n      if (e.target.closest(\".formula-item__icon\")){\n        formulaItemsPopup[index].style.opacity = '1';\n        formulaItemsPopup[index].style.visibility = 'visible';\n      } else {\n        formulaItemsPopup[index].style.opacity = '0.2';\n        formulaItemsPopup[index].style.visibility = 'hidden';\n      }\n    })\n  })\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (popupAnnotation);\n\n\n//# sourceURL=webpack:///./modules/popupAnnotation.js?");
 
 /***/ })
 

@@ -5,7 +5,7 @@ const popupAnnotation = () => {
 
   formulaItems.forEach((item, index) => {
     item.addEventListener('mouseover', (e) => {
-      if (!e.target.classList.contains("formula-item")){
+      if (e.target.closest(".formula-item__icon")){
         formulaItemsPopup[index].style.opacity = '1';
         formulaItemsPopup[index].style.visibility = 'visible';
       } else {
