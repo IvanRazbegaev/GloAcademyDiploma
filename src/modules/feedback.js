@@ -1,7 +1,5 @@
 const feedback = () => {
   const phoneInput = document.querySelectorAll('[name=phone]');
-  // const feedbackBtn = item.querySelector('.button');
-  // let confCheckbox = item.querySelector('.checkbox__input');
 
   for (let i = 1; i <= phoneInput.length; i++){
     const feedbackForm = document.querySelector(`#feedback${i}`);
