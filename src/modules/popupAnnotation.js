@@ -6,11 +6,9 @@ const popupAnnotation = () => {
   formulaItems.forEach((item, index) => {
     item.addEventListener('mouseover', (e) => {
       if (e.target.closest(".formula-item__icon")){
-        formulaItemsPopup[index].style.opacity = '1';
-        formulaItemsPopup[index].style.visibility = 'visible';
+        item.classList.add('active-item');
       } else {
-        formulaItemsPopup[index].style.opacity = '0.2';
-        formulaItemsPopup[index].style.visibility = 'hidden';
+        item.classList.remove('active-item');
       }
     })
   })
