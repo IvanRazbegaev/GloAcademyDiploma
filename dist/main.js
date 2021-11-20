@@ -17,6 +17,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_feedback__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/feedback */ \"./modules/feedback.js\");\n\r\n\r\n(0,_modules_feedback__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n\r\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
@@ -41,6 +42,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst headerPhones = () => {\n  const phoneArrow = document.querySelector('.header-contacts__arrow img');\n  const secondPhone = document.querySelector('.header-contacts__phone-number-accord')\n\n  let arrowPressed = false;\n\n  phoneArrow.addEventListener('click', (e) => {\n    if(!arrowPressed){\n      secondPhone.style.position = 'relative';\n      secondPhone.querySelector('a').style.opacity = '1';\n      phoneArrow.style.transform = 'rotate(180deg)';\n      arrowPressed = true;\n    } else {\n      secondPhone.style.position = 'absolute';\n      secondPhone.querySelector('a').style.opacity = '0';\n      phoneArrow.style.transform = 'rotate(0deg)';\n      arrowPressed = false;\n    }\n  })\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (headerPhones);\n\n\n//# sourceURL=webpack:///./modules/headerPhones.js?");
 >>>>>>> phones
+=======
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/menu */ \"./modules/menu.js\");\n\n\n(0,_modules_menu__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./modules/menu.js":
+/*!*************************!*\
+  !*** ./modules/menu.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst menu = () => {\n  const menuIcon = document.querySelector('.menu__icon');\n  const popup = document.querySelector('.popup-dialog-menu');\n  const closeBtn = document.querySelector('.close-menu');\n\n  menuIcon.addEventListener('click', () => {\n\n    if(document.documentElement.offsetWidth <= 576){\n      popup.style.transform = 'translateY(0%)';\n    }else {\n      popup.style.transform = 'translateX(0%)'\n    }\n  })\n\n  closeBtn.addEventListener('click', () => {\n    if(document.documentElement.offsetWidth <= 576){\n      popup.style.transform = 'translateY(-100%)';\n    }else {\n      popup.style.transform = 'translateX(100%)'\n    }\n  })\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (menu);\n\n\n//# sourceURL=webpack:///./modules/menu.js?");
+>>>>>>> menu
 
 /***/ })
 
