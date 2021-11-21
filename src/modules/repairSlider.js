@@ -4,14 +4,58 @@ const repairSlider = () => {
   const repairTab = repairForm.querySelectorAll('.nav-list.nav-list-repair>button');
   const mobNavigationLeft = repairForm.querySelector('.nav-arrow.nav-arrow_left');
   const mobNavigationRight = repairForm.querySelector('.nav-arrow.nav-arrow_right');
-  const mobVersionWidth = 1024;
+  const currentCounterSlide = repairForm.querySelector('.slider-counter-content__current');
+  const overallSlides = repairForm.querySelector('.slider-counter-content__total');
 
+  const mobVersionWidth = 1024;
   let currentSlide = 0;
+  let currentElem = 0;
+
+  let slides = repairSlider[currentElem].querySelectorAll('.repair-types-slider__slide');
+
+  const updateCounter = (index) => {
+    slides = repairSlider[index].querySelectorAll('.repair-types-slider__slide');
+
+    currentCounterSlide.textContent = `${currentSlide + 1}`;
+    overallSlides.textContent = `${slides.length}`;
+  }
+
+  repairForm.addEventListener('click', (e) => {
+    checkActiveButton(repairTab);
+    if(!e.target.classList.contains('active') && e.target.tagName === 'BUTTON'){
+      currentSlide = 0;
+      removeActive();
+      e.target.classList.add('active');
+      checkActiveButton(repairTab);
+      updateCounter(currentElem);
+      handleSlider(currentElem);
+    }
+
+    prevSlide(slides, currentSlide);
+    if(e.target.matches('#repair-types-arrow_left')){
+    currentSlide--;
+    currentCounterSlide.textContent = `${currentSlide + 1}`
+    } else if(e.target.matches('#repair-types-arrow_right')){
+      currentSlide++;
+      currentCounterSlide.textContent = `${currentSlide + 1}`
+    }
+
+    if(currentSlide >= slides.length){
+      currentSlide = 0;
+      currentCounterSlide.textContent = `${currentSlide + 1}`
+    }
+
+    if(currentSlide < 0){
+      currentSlide = slides.length - 1
+      currentCounterSlide.textContent = `${currentSlide + 1}`
+    }
+    nextSlide(slides, currentSlide);
+  })
 
   const checkActiveButton = (itemList) => {
     for (let i = 0; i < itemList.length; i++){
       if (itemList[i].classList.contains('active')){
-        currentSlide = i;
+        currentElem = i;
       }
     }
   }
@@ -19,31 +63,23 @@ const repairSlider = () => {
   if(document.documentElement.offsetWidth <= mobVersionWidth){
     mobNavigationLeft.addEventListener('click', () => {
       checkActiveButton(repairTab);
-      prevSlide(repairTab, currentSlide, 'active')
-      currentSlide --;
-      if (currentSlide < 0){
-        currentSlide = repairTab.length - 1;
+      prevElem(repairTab, currentElem, 'active')
+      currentElem --;
+      if (currentElem < 0){
+        currentElem = repairTab.length - 1;
       }
-      nextSlide(repairTab, currentSlide, 'active')
+      nextElem(repairTab, currentElem, 'active')
     });
     mobNavigationRight.addEventListener('click', () => {
       checkActiveButton(repairTab);
-      prevSlide(repairTab, currentSlide, 'active')
-      currentSlide ++;
-      if (currentSlide >= repairTab.length - 1){
-        currentSlide = 0;
+      prevElem(repairTab, currentElem, 'active')
+      currentElem ++;
+      if (currentElem >= repairTab.length - 1){
+        currentElem = 0;
       }
-      nextSlide(repairTab, currentSlide, 'active')
+      nextElem(repairTab, currentElem, 'active')
     })
   }
-
-  for (let i = 0; i < repairTab.length; i++){
-   repairTab[i].addEventListener('click', () => {
-     removeActive();
-     repairTab[i].classList.add('active');
-     handleSlider();
-   })
- }
 
  const removeActive = () => {
    repairTab.forEach(tab => {
@@ -52,22 +88,30 @@ const repairSlider = () => {
      }
    })
  }
-  const handleSlider = () => {
-    repairSlider.forEach((slider, index) => {
-      if(!repairTab[index].classList.contains('active')){
-        slider.style.display = 'none';
-      } else {
-        slider.style.display = 'block';
-      }
+  const handleSlider = (index) => {
+    repairSlider.forEach(item => {
+      item.style.display = 'none';
     })
+    repairSlider[index].style.display = 'block';
+
   }
 
-  const prevSlide = (elems, index, strClass) => {
+  const prevElem = (elems, index, strClass) => {
     elems[index].classList.remove(strClass);
   }
-  const nextSlide = (elems, index, strClass) => {
+  const nextElem = (elems, index, strClass) => {
     elems[index].classList.add(strClass);
   }
+
+  const prevSlide = (elems, index) => {
+    elems[index].style.display = 'none';
+  }
+  const nextSlide = (elems, index) => {
+    elems[index].style.display = 'block';
+  }
+
+updateCounter(currentElem);
 }
+
 
 export default repairSlider;
