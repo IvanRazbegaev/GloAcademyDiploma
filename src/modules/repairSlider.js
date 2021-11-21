@@ -67,7 +67,6 @@ const repairSlider = () => {
   }
   const nextSlide = (elems, index, strClass) => {
     elems[index].classList.add(strClass);
-    elems[index].style.transform = 'translateX(0%)';
   }
 }
 
