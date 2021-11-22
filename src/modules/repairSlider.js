@@ -61,6 +61,7 @@ const repairSlider = () => {
           currentTranslate = 0;
         }
         sliderForm.style.transform = `translateX(-${+currentTranslate}%)`;
+        currentSlide = 0;
         updateCounter(currentElem);
         handleSlider(currentElem);
         nextElem(repairTab, currentElem, 'active')
@@ -79,6 +80,7 @@ const repairSlider = () => {
         } else {
           navRight.disabled = false;
         };
+        currentSlide = 0;
         updateCounter(currentElem);
         handleSlider(currentElem);
         nextElem(repairTab, currentElem, 'active')
