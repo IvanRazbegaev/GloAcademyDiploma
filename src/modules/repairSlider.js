@@ -2,14 +2,19 @@ const repairSlider = () => {
   const repairForm = document.querySelector('.repair-types');
   const repairSlider = repairForm.querySelectorAll('.repair-types-slider>div');
   const repairTab = repairForm.querySelectorAll('.nav-list.nav-list-repair>button');
-  const mobNavigationLeft = repairForm.querySelector('.nav-arrow.nav-arrow_left');
-  const mobNavigationRight = repairForm.querySelector('.nav-arrow.nav-arrow_right');
   const currentCounterSlide = repairForm.querySelector('.slider-counter-content__current');
   const overallSlides = repairForm.querySelector('.slider-counter-content__total');
+  const sliderForm = repairForm.querySelector('.nav-list.nav-list-repair');
+  const sliderItems = repairForm.querySelectorAll('.button_o');
+  const navLeft = repairForm.querySelector('.nav-arrow.nav-arrow_left');
+  const navRight = repairForm.querySelector('.nav-arrow.nav-arrow_right');
+
+  console.log(sliderItems);
 
   const mobVersionWidth = 1024;
   let currentSlide = 0;
   let currentElem = 0;
+  let currentTranslate = 0;
 
   let slides = repairSlider[currentElem].querySelectorAll('.repair-types-slider__slide');
 
@@ -40,6 +45,46 @@ const repairSlider = () => {
       currentCounterSlide.textContent = `${currentSlide + 1}`
     }
 
+    if(document.documentElement.offsetWidth < mobVersionWidth){
+      if (e.target.matches('.nav-arrow.nav-arrow_left')){
+        checkActiveButton(repairTab);
+        prevElem(repairTab, currentElem, 'active')
+        currentElem --;
+        if (currentElem < 0){
+          currentElem = 0;
+          navLeft.disabled = true
+        } else {
+          navLeft.disabled = false;
+        }
+        currentTranslate -= 18;
+        if (currentTranslate <= 0){
+          currentTranslate = 0;
+        }
+        sliderForm.style.transform = `translateX(-${+currentTranslate}%)`;
+        updateCounter(currentElem);
+        handleSlider(currentElem);
+        nextElem(repairTab, currentElem, 'active')
+      } else if (e.target.matches('.nav-arrow.nav-arrow_right')){
+        checkActiveButton(repairTab);
+        prevElem(repairTab, currentElem, 'active')
+        currentElem ++;
+        currentTranslate += 18;
+        if (currentTranslate >= 38){
+          currentTranslate = 38;
+        }
+        sliderForm.style.transform = `translateX(-${+currentTranslate}%)`
+        if (currentElem >= repairTab.length){
+          currentElem = repairTab.length - 1;
+          navRight.disabled = true;
+        } else {
+          navRight.disabled = false;
+        };
+        updateCounter(currentElem);
+        handleSlider(currentElem);
+        nextElem(repairTab, currentElem, 'active')
+      }
+    }
+
     if(currentSlide >= slides.length){
       currentSlide = 0;
       currentCounterSlide.textContent = `${currentSlide + 1}`
@@ -58,27 +103,6 @@ const repairSlider = () => {
         currentElem = i;
       }
     }
-  }
-
-  if(document.documentElement.offsetWidth <= mobVersionWidth){
-    mobNavigationLeft.addEventListener('click', () => {
-      checkActiveButton(repairTab);
-      prevElem(repairTab, currentElem, 'active')
-      currentElem --;
-      if (currentElem < 0){
-        currentElem = repairTab.length - 1;
-      }
-      nextElem(repairTab, currentElem, 'active')
-    });
-    mobNavigationRight.addEventListener('click', () => {
-      checkActiveButton(repairTab);
-      prevElem(repairTab, currentElem, 'active')
-      currentElem ++;
-      if (currentElem >= repairTab.length - 1){
-        currentElem = 0;
-      }
-      nextElem(repairTab, currentElem, 'active')
-    })
   }
 
  const removeActive = () => {
