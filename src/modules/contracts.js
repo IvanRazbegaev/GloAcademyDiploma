@@ -8,8 +8,48 @@ const contracts = () => {
 
   const arrowLeft = contractForm.querySelector('.popup-arrow_transparency_left');
   const arrowRight = contractForm.querySelector('.popup-arrow_transparency_right');
+  const mobileVersionWidth = 1024;
+
+  const sliderArrowLeft = document.getElementById('transparency-arrow_left');
+  const sliderArrowRight = document.getElementById('transparency-arrow_right');
 
   let currentContract = 0;
+  let currentList = 0;
+
+  const hideList = () => {
+    for (let i = 0; i < contractsList.length; i++){
+      contractsList[i].style.display = 'none'
+    }
+  }
+
+  const showActiveList = (currentList) => {
+    contractsList[currentList].style.display = 'flex'
+  }
+
+  const removeActiveList = (currentList) => {
+    contractsList[currentList].style.display = 'none'
+  }
+
+  if (document.documentElement.offsetWidth <= mobileVersionWidth){
+    hideList();
+    showActiveList(currentList);
+    sliderArrowLeft.addEventListener('click', () => {
+      removeActiveList(currentList);
+      currentList--;
+      if (currentList < 0){
+        currentList = contractsList.length -1;
+      }
+      showActiveList(currentList);
+    });
+    sliderArrowRight.addEventListener('click', () => {
+      removeActiveList(currentList);
+      currentList++;
+      if (currentList >= contractsList.length){
+        currentList = 0;
+      }
+      showActiveList(currentList);
+    })
+  }
 
   for (let i = 0; i < contractsList.length; i++){
     contractsList[i].addEventListener('click', (e) => {
@@ -20,7 +60,6 @@ const contracts = () => {
       updateCounter(i);
     })
   }
-
     contractForm.addEventListener('click', (e) => {
       if (!e.target.closest('.popup-dialog-transparency')) {
          contractForm.style.visibility = 'hidden';
