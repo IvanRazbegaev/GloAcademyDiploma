@@ -3,6 +3,7 @@ const feedback = (form) => {
   const feedbackForm = document.querySelectorAll(`${form}`);
   const termsCloseBtn = document.querySelector('.popup-privacy>.close');
   const terms = document.querySelector('.popup-privacy');
+  const thanksPopup = document.querySelector('.popup-thank');
 
   termsCloseBtn.addEventListener('click', () => {
     terms.style.visibility  = 'hidden';
