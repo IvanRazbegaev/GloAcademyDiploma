@@ -1,6 +1,6 @@
-const feedback = () => {
+const feedback = (form) => {
 
-  const feedbackForm = document.querySelectorAll('.feedback');
+  const feedbackForm = document.querySelectorAll(`${form}`);
   const termsCloseBtn = document.querySelector('.popup-privacy>.close');
   const terms = document.querySelector('.popup-privacy');
 
@@ -20,10 +20,17 @@ const feedback = () => {
       terms.style.visibility  = 'visible'
     })
 
-    phoneInput.addEventListener('input', (e) => {
-      const pattern = /[^\d+\-\)\(]/gi
-      e.target.value = e.target.value.replace(pattern, '')
+    feedbackForm.forEach(item => {
+      const phoneInput = item.querySelector('.input.feedback__input-input');
+      phoneInput.addEventListener('input', (e) => {
+        e.target.value = phoneMask(e.target.value)
+      })
     })
+    function phoneMask (phone) {
+      return phone.replace(/\D/g, '')
+        .slice(0, 11)
+        .replace(/^(\d{1,2})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1($2)$3-$4-$5');
+    }
     feedbackBtn.addEventListener('click', async (e) => {
       confCheckbox = item.querySelector('.checkbox__input');
       e.preventDefault();
@@ -38,13 +45,16 @@ const feedback = () => {
         confCheckbox.checked = false;
       }
       const response = await sendFeedback(phoneInput.value);
+      if (form.includes('popup')){
+        document.querySelector(form).style.visibility = 'hidden';
+      }
       console.log(response);
     })
   })
 }
 
 const sendFeedback = async (data) => {
-  const path = 'server.php'
+  const path = 'https://en22hlwqnbzi7pj.m.pipedream.net'
   const getData = await fetch(path,{
     method: 'POST',
     body: JSON.stringify(data),
