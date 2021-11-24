@@ -4,6 +4,8 @@ const feedback = (form) => {
   const termsCloseBtn = document.querySelector('.popup-privacy>.close');
   const terms = document.querySelector('.popup-privacy');
   const thanksPopup = document.querySelector('.popup-thank');
+  const thanksForm = thanksPopup.querySelector('.feedback-wrap.popup-thank-bg');
+  const thanksPopupClose = thanksPopup.querySelector('.close');
 
   termsCloseBtn.addEventListener('click', () => {
     terms.style.visibility  = 'hidden';
@@ -45,6 +47,17 @@ const feedback = (form) => {
         phoneInput.value = '';
         confCheckbox.checked = false;
       }
+      console.log(thanksForm)
+      thanksPopup.style.visibility = 'visible';
+      thanksPopup.addEventListener('click', (e) => {
+        if(!e.target.closest('.popup-thank-bg')){
+          thanksPopup.style.visibility = 'hidden';
+        }
+      })
+      thanksPopupClose.addEventListener('click', () => {
+        thanksPopup.style.visibility = 'hidden';
+      })
+
       const response = await sendFeedback(phoneInput.value);
       if (form.includes('popup')){
         document.querySelector(form).style.visibility = 'hidden';
