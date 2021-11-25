@@ -105,6 +105,11 @@ const portfolio = () => {
       portfolioPopup.style.visibility = 'hidden';
     }
   })
+
+  const slideInit = () => {
+    const sliderText = portfolioPopup;
+    //TODO сделать функцию показа элементов попапа, запускать 1 раз (?)
+  }
 }
 
 export default portfolio;
