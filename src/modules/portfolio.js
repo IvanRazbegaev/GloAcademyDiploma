@@ -44,9 +44,6 @@ const portfolio = () => {
   arrowRight.addEventListener('click', () => {
 
     getActiveSlidesSet(portfolioSlide);
-    if (activeSet[0] !== 0){
-      arrowLeft.style.display = 'flex';
-    }
 
     for (let i = 0; i < activeSet.length; i++){
       hideSlide(portfolioSlide, activeSet[i]);
@@ -56,8 +53,13 @@ const portfolio = () => {
       activeSet[i] += 1;
     }
 
+    if (activeSet[0] !== 0){
+      arrowLeft.style.display = 'flex';
+    }
     if (activeSet[activeSet.length - 1] === portfolioSlide.length - 1){
       arrowRight.style.display = 'none';
+    } else {
+      arrowRight.style.display = 'flex';
     }
 
     for (let i = 0; i < activeSet.length; i++){
@@ -69,10 +71,6 @@ const portfolio = () => {
 
     getActiveSlidesSet(portfolioSlide);
 
-    if (activeSet[activeSet.length - 1] !== portfolioSlide.length - 1){
-      arrowRight.style.display = 'flex';
-    }
-
     for (let i = 0; i < activeSet.length; i++){
       hideSlide(portfolioSlide, activeSet[i]);
     }
@@ -81,8 +79,14 @@ const portfolio = () => {
       activeSet[i] -= 1;
     }
 
+    if (activeSet[activeSet.length - 1] !== portfolioSlide.length - 1){
+      arrowRight.style.display = 'flex';
+    }
+
     if (activeSet[0] === 0){
       arrowLeft.style.display = 'none';
+    } else {
+      arrowLeft.style.display = 'flex';
     }
 
     for (let i = 0; i < activeSet.length; i++){
