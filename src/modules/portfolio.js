@@ -1,9 +1,11 @@
 const portfolio = () => {
   const portfolioForm = document.querySelector('.portfolio');
   const portfolioSlide = portfolioForm.querySelectorAll('.portfolio-slider__slide.fade-tab');
-  const portfolioSlider = portfolioForm.querySelector('.portfolio-slider');
   const arrowRight = document.getElementById('portfolio-arrow_right');
   const arrowLeft = document.getElementById('portfolio-arrow_left');
+  const slidesList = portfolioForm.querySelectorAll('.portfolio-slider__slide-frame');
+  const portfolioPopup = document.querySelector('.popup-portfolio');
+  const popupDialogWindow = portfolioPopup.querySelector('.popup-dialog')
 
   let currentlyShownSlides;
   let activeSet = [];
@@ -88,6 +90,21 @@ const portfolio = () => {
     }
   })
 
+  slidesList.forEach(slide => {
+    slide.addEventListener('click', (e) => {
+      portfolioPopup.style.visibility = 'visible';
+    })
+  })
+
+  portfolioPopup.addEventListener('click', (e) => {
+    const close = portfolioPopup.querySelector('.close');
+    if(!e.target.closest('.popup-dialog')){
+      portfolioPopup.style.visibility = 'hidden';
+    }
+    if (e.target === close){
+      portfolioPopup.style.visibility = 'hidden';
+    }
+  })
 }
 
 export default portfolio;
