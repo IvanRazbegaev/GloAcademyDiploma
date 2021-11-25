@@ -8,7 +8,6 @@ const feedbackBlock = async () => {
   const terms = document.querySelector('.popup-privacy');
 
   const thanksPopup = document.querySelector('.popup-thank');
-  const thanksForm = thanksPopup.querySelector('.feedback-wrap.popup-thank-bg');
   const thanksPopupClose = thanksPopup.querySelector('.close');
 
   termsCloseBtn.addEventListener('click', () => {
