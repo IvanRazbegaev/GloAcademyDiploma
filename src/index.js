@@ -1,19 +1,15 @@
-import accordion from "./modules/accordeon";
-import consultation from "./modules/consultation";
-import contracts from "./modules/contracts";
-import feedback from "./modules/feedback";
 import headerPhones from "./modules/headerPhones";
+import feedback from "./modules/feedback";
 import {menu} from "./modules/menu";
 import modal from "./modules/modal";
 import portfolio from "./modules/portfolio";
-import repairSlider from "./modules/repairSlider";
+import consult from "./modules/consultation";
+import feedbackBlock from "./modules/feedbackBlock";
 
-accordion();
-consultation();
-contracts();
 feedback('.feedback');
 headerPhones();
 menu();
 modal();
 portfolio();
-repairSlider();
+consult()
+feedbackBlock();
