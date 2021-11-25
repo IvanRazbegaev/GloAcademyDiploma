@@ -47,10 +47,6 @@ const feedbackBlock = async () => {
       } else if (nameInput.value.length < 2){
         alert('Имя не может быть менее 2ух символов!');
         return false;
-      } else {
-        phoneInput.value = '';
-        nameInput.value = '';
-        confCheckbox.checked = false;
       }
 
       thanksPopup.style.visibility = 'visible';
@@ -63,8 +59,12 @@ const feedbackBlock = async () => {
         thanksPopup.style.visibility = 'hidden';
       })
 
-      const response = await sendFeedback(phoneInput.value);
+      const response = await sendFeedback(phoneInput.value, nameInput.value);
       console.log(response)
+
+      phoneInput.value = '';
+      nameInput.value = '';
+      confCheckbox.checked = false;
     })
   })
 }

@@ -1,10 +1,9 @@
-const sendFeedback = async (...data) => {
+const sendFeedback = async (...params) => {
 
-  console.log(data)
   const path = 'https://en22hlwqnbzi7pj.m.pipedream.net'
   const getData = await fetch(path,{
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify(params),
     headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json'

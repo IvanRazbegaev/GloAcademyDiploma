@@ -9,7 +9,6 @@ const repairSlider = () => {
   const navLeft = repairForm.querySelector('.nav-arrow.nav-arrow_left');
   const navRight = repairForm.querySelector('.nav-arrow.nav-arrow_right');
 
-  console.log(sliderItems);
 
   const mobVersionWidth = 1024;
   let currentSlide = 0;

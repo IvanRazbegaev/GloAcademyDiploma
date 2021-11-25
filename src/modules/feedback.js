@@ -47,11 +47,7 @@ const feedback = (form) => {
       } else if (!confCheckbox.checked) {
         alert('Примите политику безопасности!')
         return false;
-      } else {
-        phoneInput.value = '';
-        confCheckbox.checked = false;
       }
-      console.log(thanksForm)
       thanksPopup.style.visibility = 'visible';
       thanksPopup.addEventListener('click', (e) => {
         if(!e.target.closest('.popup-thank-bg')){
@@ -66,6 +62,8 @@ const feedback = (form) => {
       if (form.includes('popup')){
         document.querySelector(form).style.visibility = 'hidden';
       }
+      phoneInput.value = '';
+      confCheckbox.checked = false;
       console.log(response);
     })
   })
