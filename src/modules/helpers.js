@@ -1,4 +1,6 @@
 const sendFeedback = async (...data) => {
+
+  console.log(data)
   const path = 'https://en22hlwqnbzi7pj.m.pipedream.net'
   const getData = await fetch(path,{
     method: 'POST',
