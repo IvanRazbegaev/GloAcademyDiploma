@@ -1,8 +1,12 @@
+import {sendFeedback} from "./helpers";
+
 const feedback = (form) => {
 
   const feedbackForm = document.querySelectorAll(`${form}`);
+
   const termsCloseBtn = document.querySelector('.popup-privacy>.close');
   const terms = document.querySelector('.popup-privacy');
+
   const thanksPopup = document.querySelector('.popup-thank');
   const thanksForm = thanksPopup.querySelector('.feedback-wrap.popup-thank-bg');
   const thanksPopupClose = thanksPopup.querySelector('.close');
@@ -67,19 +71,6 @@ const feedback = (form) => {
   })
 }
 
-const sendFeedback = async (data) => {
-  const path = 'https://en22hlwqnbzi7pj.m.pipedream.net'
-  const getData = await fetch(path,{
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-type': 'application/json',
-      'Accept': 'application/json'
-    }
-  }).then(response => response.json())
-    .catch((e) => console.log(e));
 
-  return getData;
-}
 
 export default feedback;
