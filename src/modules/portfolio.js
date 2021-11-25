@@ -1,29 +1,93 @@
 const portfolio = () => {
   const portfolioForm = document.querySelector('.portfolio');
   const portfolioSlide = portfolioForm.querySelectorAll('.portfolio-slider__slide.fade-tab');
+  const portfolioSlider = portfolioForm.querySelector('.portfolio-slider');
   const arrowRight = document.getElementById('portfolio-arrow_right');
   const arrowLeft = document.getElementById('portfolio-arrow_left');
 
-  let currentMargin = 0;
-  const maxMargin = +portfolioSlide[0].offsetWidth * +portfolioSlide.length;
-  arrowRight.addEventListener('click', () => {
-    console.log('arrow is clicked')
-    if(currentMargin >= maxMargin - (+portfolioSlide[0].offsetWidth * +(portfolioSlide.length - 2))){
-      currentMargin = +portfolioSlide[0].offsetWidth * +(portfolioSlide.length - 2)
-    }
-    currentMargin += +portfolioSlide[0].offsetWidth;
-    portfolioSlide[0].style.marginLeft = `-${currentMargin}px`;
-    })
+  let currentlyShownSlides;
+  let activeSet = [];
 
-  arrowLeft.style.display = 'flex';
-  arrowLeft.addEventListener('click', () => {
-    console.log(currentMargin)
-    currentMargin -= +portfolioSlide[0].offsetWidth;
-    if (currentMargin < 0) {
-      currentMargin = 0;
+  if (document.documentElement.offsetWidth < 1010){
+    currentlyShownSlides = 2;
+  } else {
+    currentlyShownSlides = 3;
+  }
+
+  const showSlide = (elem, index) => {
+    elem[index].style.display = 'flex';
+  }
+
+  const hideSlide = (elem, index) => {
+    elem[index].style.display = 'none';
+  }
+
+  for (let i = 0; i < portfolioSlide.length; i++){
+    hideSlide(portfolioSlide, i);
+  }
+  for (let i = 0; i < currentlyShownSlides; i++){
+    showSlide(portfolioSlide, i);
+  }
+
+
+  const getActiveSlidesSet = (slidesList) => {
+    activeSet = [];
+    for (let i = 0; i < slidesList.length; i++){
+      if(slidesList[i].style.display === 'flex'){
+        activeSet.push(i);
+      }
     }
-    portfolioSlide[0].style.marginLeft = `-${currentMargin}px`;
+  }
+
+  arrowRight.addEventListener('click', () => {
+
+    getActiveSlidesSet(portfolioSlide);
+    if (activeSet[0] !== 0){
+      arrowLeft.style.display = 'flex';
+    }
+
+    for (let i = 0; i < activeSet.length; i++){
+      hideSlide(portfolioSlide, activeSet[i]);
+    }
+
+    for (let i = 0; i < activeSet.length; i++){
+      activeSet[i] += 1;
+    }
+
+    if (activeSet[activeSet.length - 1] === portfolioSlide.length - 1){
+      arrowRight.style.display = 'none';
+    }
+
+    for (let i = 0; i < activeSet.length; i++){
+      showSlide(portfolioSlide, activeSet[i]);
+    }
   })
+
+  arrowLeft.addEventListener('click', () => {
+
+    getActiveSlidesSet(portfolioSlide);
+
+    if (activeSet[activeSet.length - 1] !== portfolioSlide.length - 1){
+      arrowRight.style.display = 'flex';
+    }
+
+    for (let i = 0; i < activeSet.length; i++){
+      hideSlide(portfolioSlide, activeSet[i]);
+    }
+
+    for (let i = 0; i < activeSet.length; i++){
+      activeSet[i] -= 1;
+    }
+
+    if (activeSet[0] === 0){
+      arrowLeft.style.display = 'none';
+    }
+
+    for (let i = 0; i < activeSet.length; i++){
+      showSlide(portfolioSlide, activeSet[i]);
+    }
+  })
+
 }
 
 export default portfolio;
