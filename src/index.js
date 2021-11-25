@@ -1,3 +1,3 @@
-import reviews from "./modules/reviews";
+import popupAnnotation from "./modules/popupAnnotation";
 
-reviews()
+popupAnnotation();
