@@ -2,12 +2,12 @@ import headerPhones from "./modules/headerPhones";
 import feedback from "./modules/feedback";
 import {menu} from "./modules/menu";
 import modal from "./modules/modal";
-import contracts from "./modules/contracts";
+import portfolio from "./modules/portfolio";
+import consult from "./modules/consultation";
 
-
-feedback();
+feedback('.feedback');
 headerPhones();
 menu();
 modal();
-contracts();
-
+portfolio();
+consult()
